@@ -15,9 +15,13 @@ function ModalShow() {
         setIsOpen(false);
     }
 
-    const [isAscending, setIsAscending] = useState(0)
+    const [isAscending, setIsAscending] = useState(1)
+    const handleSortAsc = (num) => {
+        setIsAscending(num)
+    }
+
     const [posts, setPosts] = useState([])
-    const fetchPosts = () => {
+    const fetchPosts = (isAscending) => {
         fetch('https://restcountries.com/v3.1/all')
             .then((response) => response.json())
             .then((data) => {
@@ -47,18 +51,18 @@ function ModalShow() {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+    var formDataArray = $('search').serializeArray();
+    console.log(formDataArray)
 
-    const handleSortAsc = (num) => {
-        setIsAscending(num)
-    }
-    const handleSortDes = () => {
-        setIsAscending(num)
-    }
     return (
         <>
             <body>
-                <button onClick={() => handleSortAsc(1)}>Sort ascending</button>
-                <button onClick={() => handleSortDes(0)}>Sort descending</button>
+                <form method="get" id="search">
+                    <input type="text" name="country" />
+                    <input type="submit" />
+                </form>
+                <button onClick={() => fetchPosts(1)}>Sort ascending</button>
+                <button onClick={() => fetchPosts(0)}>Sort descending</button>
                 {currentPosts.map((post) => {
                     return (
                         <>
