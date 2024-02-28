@@ -1,0 +1,49 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+}
+.header{
+  background-color: green;
+  text-align: left;
+}
+.footer{
+  background-color: blue;
+  bottom: 0;
+  text-align: left;
+}
+
+.country h1{
+  color: black;
+}
+
+.card{
+  border: 5px;
+  box-shadow: 5px 5px 5px;
+  border-radius: 5%;
+  background-color: aliceblue;
+  color: black;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: center;
+}
+
+.card img{
+
+  width: 300px;
+  height: 150px;
+}
+
+.countries{
+  flex-direction: row;
+}
+
+
+
