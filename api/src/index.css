@@ -40,7 +40,6 @@ border-bottom: .2em solid #fff;
   background-color: aliceblue;
   color: black;
   max-width: 350px;
-  display: flex;
   flex-direction: column;
   text-align: left;
   align-items: center;

@@ -53,35 +53,32 @@ function ModalShow() {
         const formData = {
             country: e.target.elements.country.value,
         };
-        console.log(formData);
         const fuse = new Fuse(posts, {
             keys: ['name.common', 'name.official']
         });
-        console.log(fuse.search("cam"));
         currentPosts = fuse.search(formData["country"]).slice()
     };
-    const [posts2, setPosts2] = useState([])
-    const gotoModalContent2 = (country) => {
+    // const [posts2, setPosts2] = useState([])
+    // const gotoModalContent2 = (country) => {
 
-        const fetchPosts = () => {
-            fetch('https://restcountries.com/v3.1/name/' + country)
-                .then((response) => response.json())
-                .then((data) => {
-                    if (isAscending == 1) {
-                        data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-                        setPosts2(data);
-                    }
-                    else {
-                        data.sort((a, b) => b.name.common.localeCompare(a.name.common));
-                        setPosts2(data);
-                    }
-                })
-        }
-        useEffect(() => {
-            fetchPosts()
-        }, []);
-    }
-    console.log(currentPosts)
+    //     const fetchPosts = () => {
+    //         fetch('https://restcountries.com/v3.1/name/' + country)
+    //             .then((response) => response.json())
+    //             .then((data) => {
+    //                 if (isAscending == 1) {
+    //                     data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+    //                     setPosts2(data);
+    //                 }
+    //                 else {
+    //                     data.sort((a, b) => b.name.common.localeCompare(a.name.common));
+    //                     setPosts2(data);
+    //                 }
+    //             })
+    //     }
+    //     useEffect(() => {
+    //         fetchPosts()
+    //     }, []);
+    // }
     return (
         <>
             <body>
@@ -116,7 +113,7 @@ function ModalShow() {
                     })}
                     <div className="container">
                         <div className="title">
-                            <h1>Blog</h1>
+                            <h1>Page</h1>
                         </div>
                         {posts ? (
                             <div className="blog-content-section">
@@ -133,12 +130,11 @@ function ModalShow() {
                     </div>
                 </div>
                 <div>
-                    <div className="country" onClick={openModal}><p>country</p></div>
-                    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="haha bro">
+                    <div className="country"></div>
+                    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Modal">
                         <div id="id01" className="modal">
                             <button onClick={closeModal}>close</button>
-                            <h1>whatever</h1>
-                            <h1>what ever dude</h1>
+                            <p>Country info:</p>
                         </div>
                     </Modal>
                 </div>
