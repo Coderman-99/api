@@ -16,7 +16,9 @@ function Card(props) {
     // }
     else {
         return (
-            <p>{props.contents}</p>
+            <>
+                <p>{props.contents}</p>
+            </>
         );
     }
 }

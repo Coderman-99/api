@@ -11,11 +11,21 @@
 .header{
   background-color: green;
   text-align: left;
+  background: 
+  linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+  linear-gradient(#4e4376, #2b5876);
+background-size: cover;
+border-bottom: .2em solid #fff;
 }
 .footer{
   background-color: blue;
   bottom: 0;
   text-align: left;
+  background: 
+  linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+  linear-gradient(#4e4376, #2b5876);
+background-size: cover;
+border-bottom: .2em solid #fff;
 }
 
 .country h1{
@@ -24,6 +34,7 @@
 
 .card{
   border: 5px;
+  margin: 10px;
   box-shadow: 5px 5px 5px;
   border-radius: 5%;
   background-color: aliceblue;
@@ -41,8 +52,32 @@
   height: 150px;
 }
 
+.props{
+  color: red;
+}
+
 .countries{
   flex-direction: row;
+  align-items: center;
+}
+
+.modal p{
+  color: black;
+}
+
+.pagination li{
+  display: inline;
+  padding: 10px;
+  margin: 10px;
+  border: 3px;
+  border-color: #242424;
+  background-color: #4e4376;
+}
+
+
+
+.pagination-container{
+  display: inline;
 }
 
 

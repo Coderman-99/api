@@ -4,6 +4,8 @@ import Body from "./Body";
 import Paginate from "./Pagination.jsx";
 import ModalContent from "./ModalContent";
 import Card from "./Card";
+import Fuse from "fuse.js"
+import ModalContent2 from "./ModalContent2.jsx";
 
 Modal.setAppElement('#root');
 function ModalShow() {
@@ -15,17 +17,12 @@ function ModalShow() {
         setIsOpen(false);
     }
 
-    const [isAscending, setIsAscending] = useState(1)
-    const handleSortAsc = (num) => {
-        setIsAscending(num)
-    }
-
     const [posts, setPosts] = useState([])
     const fetchPosts = (isAscending) => {
         fetch('https://restcountries.com/v3.1/all')
             .then((response) => response.json())
             .then((data) => {
-                if (isAscending == 1) {
+                if (isAscending == 1 || isAscending == null) {
                     data.sort((a, b) => a.name.common.localeCompare(b.name.common));
                     setPosts(data);
                 }
@@ -46,67 +43,95 @@ function ModalShow() {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    let currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
-    var formDataArray = $('search').serializeArray();
-    console.log(formDataArray)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+            country: e.target.elements.country.value,
+        };
+        console.log(formData);
+        const fuse = new Fuse(posts, {
+            keys: ['name.common', 'name.official']
+        });
+        console.log(fuse.search("cam"));
+        currentPosts = fuse.search(formData["country"]).slice()
+    };
+    const [posts2, setPosts2] = useState([])
+    const gotoModalContent2 = (country) => {
 
+        const fetchPosts = () => {
+            fetch('https://restcountries.com/v3.1/name/' + country)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (isAscending == 1) {
+                        data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                        setPosts2(data);
+                    }
+                    else {
+                        data.sort((a, b) => b.name.common.localeCompare(a.name.common));
+                        setPosts2(data);
+                    }
+                })
+        }
+        useEffect(() => {
+            fetchPosts()
+        }, []);
+    }
+    console.log(currentPosts)
     return (
         <>
             <body>
-                <form method="get" id="search">
-                    <input type="text" name="country" />
-                    <input type="submit" />
-                </form>
-                <button onClick={() => fetchPosts(1)}>Sort ascending</button>
-                <button onClick={() => fetchPosts(0)}>Sort descending</button>
-                {currentPosts.map((post) => {
-                    return (
-                        <>
-                            <div className="countries">
-                                <div className="card">
-                                    <div className="flag">
-                                        <Card contents={post.flags.png} />
-                                    </div>
-                                    <div>
-                                        <Card contents={post.name.official} />
-                                        <Card contents={post.cca2} />
-                                        <Card contents={post.cca3} />
+                <div>
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <input type="text" name="country" />
+                        <input type="submit" />
+                    </form>
+                    <button onClick={() => fetchPosts(1)}>Sort ascending</button>
+                    <button onClick={() => fetchPosts(0)}>Sort descending</button>
+                    {currentPosts.map((post) => {
+                        return (
+                            <>
+                                <div className="countries">
+                                    <div className="card" onClick={openModal}>
+                                        <div className="flag">
+                                            <Card contents={post.flags.png} />
+                                        </div>
+
+                                        <div className="name"><p className="props">Country name: </p><Card contents={post.name.official} /></div>
+                                        <div className="cca2"><p className="props">CCA2: </p><Card contents={post.cca2} /></div>
+                                        <div className="cca3"><p className="props">CCA3: </p><Card contents={post.cca3} /></div>
                                         {/* <Card length={length} contents={nativeNames} /> */}
-                                        <Card contents={post.altSpellings} />
-                                        {/* <Card contents={post.idd.root} /> */}
+                                        <div className="altspelling"><p className="props">Alternative Spelling: </p><Card contents={post.altSpellings} />
+                                            {/* <Card contents={post.idd.root} /> */}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <Body uniqueKey={post.cca2} body={post.name.official} length={posts.length} />
-                        </>
-                    );
-                })}
-                <div className="container">
-                    <div className="title">
-                        <h1>Blog</h1>
-                    </div>
-                    {posts ? (
-                        <div className="blog-content-section">
-                            {/* ... */}
-                            <Paginate
-                                postsPerPage={postsPerPage}
-                                totalPosts={posts.length}
-                                paginate={paginate}
-                            />
+                            </>
+                        );
+                    })}
+                    <div className="container">
+                        <div className="title">
+                            <h1>Blog</h1>
                         </div>
-                    ) : (
-                        <div className="loading">Loading...</div>
-                    )}
+                        {posts ? (
+                            <div className="blog-content-section">
+                                {/* ... */}
+                                <Paginate
+                                    postsPerPage={postsPerPage}
+                                    totalPosts={posts.length}
+                                    paginate={paginate}
+                                />
+                            </div>
+                        ) : (
+                            <div className="loading">Loading...</div>
+                        )}
+                    </div>
                 </div>
-
-
-
-
                 <div>
                     <div className="country" onClick={openModal}><p>country</p></div>
                     <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="haha bro">
