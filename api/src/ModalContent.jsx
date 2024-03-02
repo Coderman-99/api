@@ -1,21 +1,37 @@
 
-function ModalContent(props) {
-    if (props.contents.includes("https")) {
-        return (
-            <img src={props.contents} alt="flag" />
-        );
-    }
-    // else if (typeof (props.contents) == Object) {
-    //     for (let i = 0; i++; i < props.length) {
-    //         return (
-    //             <p>{props.contents[i].official}</p>
-    //         );
-    //     }
-    // }
-    else {
-        return (
-            <p>{props.contents}</p>
-        );
-    }
+function Card(props) {
+    let i = 0;
+    return (
+        <div>
+            {props.keys.map((prop) => {
+                if (prop == "flags") {
+                    return (
+                        <img src={props.contents[prop].png} alt="flag" />
+                    );
+                }
+                else if (prop == "name") {
+                    return (
+                        <p>{props.contents[prop].official}</p>
+                    );
+                }
+                else if (prop == "cca3") {
+                    return (
+                        <p>{props.contents[prop]}</p>
+                    );
+                }
+                else if (prop == "cca2") {
+                    return (
+                        <p>{props.contents[prop]}</p>
+                    );
+                }
+                else {
+                    return (
+                        <p>{props.contents[prop]}</p>
+                    );
+                }
+            }
+            )}
+        </div>
+    );
 }
-export default ModalContent
+export default Card

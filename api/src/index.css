@@ -40,13 +40,10 @@ border-bottom: .2em solid #fff;
   background-color: aliceblue;
   color: black;
   max-width: 350px;
-  flex-direction: column;
-  text-align: left;
-  align-items: center;
+  text-align: center;
 }
 
 .card img{
-
   width: 300px;
   height: 150px;
 }
