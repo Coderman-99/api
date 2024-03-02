@@ -32,6 +32,13 @@ function ModalContent(props) {
                                     );
 
                                 }
+                                else if (countryinfo[prop].constructor == Array) {
+                                    return (
+                                        <>
+                                            <p>{prop} : {countryinfo[prop].join(' ')}</p>
+                                        </>
+                                    );
+                                }
                                 else {
                                     return (
 
