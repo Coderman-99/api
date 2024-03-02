@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal"
 import OpenModal from "./OpenModal";
+import ModalContent2 from "./ModalContent2";
 function ModalContent(props) {
 
     const url = 'https://restcountries.com/v3.1/name/'
@@ -20,7 +21,7 @@ function ModalContent(props) {
 
     return (
         <>
-            <div id="id01" className="modal">
+            <div className="modal">
                 {countryInfo.map((countryinfo) => {
                     return (
                         <div>
@@ -33,7 +34,10 @@ function ModalContent(props) {
                                 }
                                 else {
                                     return (
-                                        <p></p>
+
+                                        <>
+                                            <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                        </>
                                     );
                                 }
                             })
