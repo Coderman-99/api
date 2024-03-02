@@ -10,13 +10,16 @@ import ModalContent2 from "./ModalContent2.jsx";
 Modal.setAppElement('#root');
 function ModalShow() {
     const [modalIsOpen, setIsOpen] = useState(false);
-    function openModal() {
+    const [country, setCountry] = useState()
+    const [keys, setKeys] = useState()
+    function openModal(country, keys) {
         setIsOpen(true);
+        setCountry(country)
+        setKeys(keys)
     }
     function closeModal() {
         setIsOpen(false);
     }
-
     const [posts, setPosts] = useState([])
     const fetchPosts = (isAscending) => {
         fetch('https://restcountries.com/v3.1/all')
@@ -35,6 +38,7 @@ function ModalShow() {
     useEffect(() => {
         fetchPosts()
     }, []);
+
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(25);
@@ -92,25 +96,30 @@ function ModalShow() {
                     {currentPosts.map((post) => {
                         return (
                             <>
-                                <div className="countries">
-                                    <div className="card" onClick={openModal}>
-                                        <div className="flag">
-                                            <Card contents={post.flags.png} />
-                                        </div>
+                                <div className="countries" onClick={() => openModal(post.name.common, Object.keys(post))}>
+                                    <div className="flag">
+                                        <Card contents={post.flags.png} />
+                                    </div>
 
-                                        <div className="name"><p className="props">Country name: </p><Card contents={post.name.official} /></div>
-                                        <div className="cca2"><p className="props">CCA2: </p><Card contents={post.cca2} /></div>
-                                        <div className="cca3"><p className="props">CCA3: </p><Card contents={post.cca3} /></div>
-                                        {/* <Card length={length} contents={nativeNames} /> */}
-                                        <div className="altspelling"><p className="props">Alternative Spelling: </p><Card contents={post.altSpellings} />
-                                            {/* <Card contents={post.idd.root} /> */}
-                                        </div>
+                                    <div className="name"><p className="props">Country name: </p><Card contents={post.name.official} /></div>
+                                    <div className="cca2"><p className="props">CCA2: </p><Card contents={post.cca2} /></div>
+                                    <div className="cca3"><p className="props">CCA3: </p><Card contents={post.cca3} /></div>
+                                    {/* <Card length={length} contents={nativeNames} /> */}
+                                    <div className="altspelling"><p className="props">Alternative Spelling: </p><Card contents={post.altSpellings} />
+                                        {/* <Card contents={post.idd.root} /> */}
                                     </div>
                                 </div>
-
                             </>
                         );
                     })}
+                    <div>
+                        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Modal">
+                            <div id="id01" className="modal">
+                                <button onClick={closeModal}>close</button>
+                                <ModalContent country={country} keys={keys} />
+                            </div>
+                        </Modal>
+                    </div>
                     <div className="container">
                         <div className="title">
                             <h1>Page</h1>
@@ -129,16 +138,7 @@ function ModalShow() {
                         )}
                     </div>
                 </div>
-                <div>
-                    <div className="country"></div>
-                    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Modal">
-                        <div id="id01" className="modal">
-                            <button onClick={closeModal}>close</button>
-                            <p>Country info:</p>
-                        </div>
-                    </Modal>
-                </div>
-            </body>
+            </body >
         </>
     );
 }

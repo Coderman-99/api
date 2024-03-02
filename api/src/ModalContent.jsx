@@ -1,37 +1,49 @@
+import { useState, useEffect } from "react";
+import Modal from "react-modal"
+import OpenModal from "./OpenModal";
+function ModalContent(props) {
 
-function Card(props) {
-    let i = 0;
+    const url = 'https://restcountries.com/v3.1/name/'
+    const [countryInfo, setCountryInfo] = useState([])
+
+    const fetchPosts = () => {
+        fetch(url.concat(props.country))
+            .then((response) => response.json())
+            .then((data) => {
+                setCountryInfo(data);
+                setCountryInfo(data);
+            })
+    }
+    useEffect(() => {
+        fetchPosts()
+    }, []);
+
     return (
-        <div>
-            {props.keys.map((prop) => {
-                if (prop == "flags") {
+        <>
+            <div id="id01" className="modal">
+                {countryInfo.map((countryinfo) => {
                     return (
-                        <img src={props.contents[prop].png} alt="flag" />
+                        <div>
+                            {props.keys.map((prop) => {
+                                if (typeof (countryinfo[prop]) == "string") {
+                                    return (
+                                        <p>{prop} : {countryinfo[prop]}</p>
+                                    );
+
+                                }
+                                else {
+                                    return (
+                                        <p></p>
+                                    );
+                                }
+                            })
+                            }
+                        </div>
                     );
-                }
-                else if (prop == "name") {
-                    return (
-                        <p>{props.contents[prop].official}</p>
-                    );
-                }
-                else if (prop == "cca3") {
-                    return (
-                        <p>{props.contents[prop]}</p>
-                    );
-                }
-                else if (prop == "cca2") {
-                    return (
-                        <p>{props.contents[prop]}</p>
-                    );
-                }
-                else {
-                    return (
-                        <p>{props.contents[prop]}</p>
-                    );
-                }
-            }
-            )}
-        </div>
+                })}
+            </div>
+
+        </>
     );
 }
-export default Card
+export default ModalContent
