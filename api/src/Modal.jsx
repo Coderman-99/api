@@ -91,7 +91,7 @@ function ModalShow() {
                     </form>
                     <button onClick={() => fetchPosts(1)}>Sort ascending</button>
                     <button onClick={() => fetchPosts(0)}>Sort descending</button>
-                    {currentPosts.map((post) => {
+                    <div className="modal-body">{currentPosts.map((post) => {
                         return (
                             <>
                                 <div className="card" onClick={() => openModal(post.name.common)}>
@@ -105,7 +105,8 @@ function ModalShow() {
                                 </div>
                             </>
                         );
-                    })}
+                    })}</div>
+
                     <div>
                         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Modal">
                             <div id="id01" className="modal">

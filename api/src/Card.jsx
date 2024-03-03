@@ -11,7 +11,7 @@ function Card(props) {
                         );
                     }
                     else {
-                        if (props.contents[prop].includes("https")) {
+                        if (prop == "svg" || prop == "alt") {
                             return (
                                 <></>
                             );
@@ -35,12 +35,18 @@ function Card(props) {
                     );
                 }
                 else if (props.contents[prop].constructor == Object) {
-                    return (
-                        <>
-                            <p className="first-key">{prop}: </p>
-                            <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
-                        </>
-                    );
+                    if (prop == "flags") {
+                        return (<Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
+                        );
+                    }
+                    else {
+                        return (
+                            <>
+                                <p className="first-key">{prop}: </p>
+                                <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
+                            </>
+                        );
+                    }
                 }
                 else {
                     return (

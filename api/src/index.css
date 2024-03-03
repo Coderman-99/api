@@ -41,6 +41,8 @@ border-bottom: .2em solid #fff;
   color: black;
   max-width: 350px;
   text-align: center;
+  flex-direction: row;
+  letter-spacing: 1px;
 }
 
 .card img{
@@ -70,7 +72,9 @@ border-bottom: .2em solid #fff;
   background-color: #4e4376;
 }
 
-
+.modal-body{
+  flex-direction: row;
+}
 
 .pagination-container{
   display: inline;
