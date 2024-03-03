@@ -76,5 +76,15 @@ border-bottom: .2em solid #fff;
   display: inline;
 }
 
+.first-key{
+  color: green;
+  text-decoration: solid;
+}
+
+.second-key{
+  color: blue;
+  
+}
+
 
 

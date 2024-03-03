@@ -5,7 +5,7 @@ import ModalContent3 from "./ModalContent3";
 function ModalContent2(props) {
     return (
         <>
-            <div className="modal">
+            <div className="modal-content">
                 <div>
                     {props.keys.map((prop) => {
                         if (typeof (props.contents[prop]) == "string") {
@@ -36,9 +36,7 @@ function ModalContent2(props) {
                     })
                     }
                 </div>
-
             </div>
-
         </>
     );
 }

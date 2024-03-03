@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Modal from "react-modal"
 import OpenModal from "./OpenModal";
 import ModalContent2 from "./ModalContent2";
+
 function ModalContent(props) {
 
     const url = 'https://restcountries.com/v3.1/name/'
@@ -19,18 +20,19 @@ function ModalContent(props) {
         fetchPosts()
     }, []);
 
+
     return (
         <>
-            <div className="modal">
+            <div className="countries">
                 {countryInfo.map((countryinfo) => {
+                    let keys = Object.keys(countryinfo)
                     return (
                         <div>
-                            {props.keys.map((prop) => {
+                            {keys.map((prop) => {
                                 if (typeof (countryinfo[prop]) == "string") {
                                     return (
                                         <p>{prop} : {countryinfo[prop]}</p>
                                     );
-
                                 }
                                 else if (countryinfo[prop].constructor == Array) {
                                     return (
@@ -43,6 +45,7 @@ function ModalContent(props) {
                                     return (
 
                                         <>
+
                                             <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                         </>
                                     );
