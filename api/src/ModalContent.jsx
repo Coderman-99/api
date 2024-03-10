@@ -31,13 +31,17 @@ function ModalContent(props) {
                             {keys.map((prop) => {
                                 if (typeof (countryinfo[prop]) == "string") {
                                     return (
-                                        <p>{prop} : {countryinfo[prop]}</p>
+                                        <>
+                                            <p className="first-key">{prop}:</p>
+                                            <p>{countryinfo[prop]}</p>
+                                        </>
                                     );
                                 }
                                 else if (countryinfo[prop].constructor == Array) {
                                     return (
                                         <>
-                                            <p>{prop} : {countryinfo[prop].join(' ')}</p>
+                                            <p className="first-key" >{prop}:</p>
+                                            <p>{countryinfo[prop].join(' ')}</p>
                                         </>
                                     );
                                 }
@@ -45,7 +49,7 @@ function ModalContent(props) {
                                     return (
 
                                         <>
-
+                                            <p className="first-key">{prop}: </p>
                                             <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                         </>
                                     );
@@ -55,7 +59,7 @@ function ModalContent(props) {
                         </div>
                     );
                 })}
-            </div>
+            </div >
 
         </>
     );

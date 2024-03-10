@@ -36,18 +36,24 @@ border-bottom: .2em solid #fff;
   border: 5px;
   margin: 10px;
   box-shadow: 5px 5px 5px;
-  border-radius: 5%;
+  border-radius: 25px;
   background-color: aliceblue;
   color: black;
-  max-width: 350px;
-  text-align: center;
-  flex-direction: row;
+  width: 325px;
+  display: flex;
+  flex-direction: column;
   letter-spacing: 1px;
+  padding: 15px;
+  align-items: center;
 }
 
 .card img{
   width: 300px;
   height: 150px;
+}
+
+.card p{
+  margin: 0px;
 }
 
 .props{
@@ -72,22 +78,30 @@ border-bottom: .2em solid #fff;
   background-color: #4e4376;
 }
 
-.modal-body{
+
+.modal-body2{
+  flex-wrap: wrap;
+  display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .pagination-container{
   display: inline;
 }
 
-.first-key{
+.parent-key{
   color: green;
   text-decoration: solid;
 }
 
-.second-key{
-  color: blue;
+.children-key{
+  color: green;
   
+}
+
+.inline p{
+  display: inline;
 }
 
 
