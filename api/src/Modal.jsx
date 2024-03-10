@@ -6,13 +6,14 @@ import ModalContent from "./ModalContent";
 import Card from "./Card";
 import Fuse from "fuse.js"
 import ModalContent2 from "./ModalContent2.jsx";
-
+import Error from "./Error.jsx";
 Modal.setAppElement('#root');
 function ModalShow() {
     const [modalIsOpen, setIsOpen] = useState(false);
     const [country, setCountry] = useState()
     const [searchCountry, setSearchCountry] = useState("")
     const [sCountry, setsCountry] = useState([])
+    const [errorMessage, setErrorMessage] = useState("")
     function openModal(country, keys) {
         setIsOpen(true);
         setCountry(country)
@@ -45,7 +46,12 @@ function ModalShow() {
         const fuse = new Fuse(post, {
             keys: ['name.common', 'name.official']
         });
-        setsCountry(fuse.search(searchCountry))
+        if (searchCountry != "") {
+            setsCountry(fuse.search(searchCountry))
+        }
+        else {
+            setErrorMessage("Cannot be empty!")
+        }
     };
     console.log(searchCountry)
     console.log(sCountry)
@@ -93,6 +99,7 @@ function ModalShow() {
                         )} />
                         <input type="submit" />
                     </form>
+                    <Error error={errorMessage} />
                     <button onClick={() => fetchPosts(1)}>Sort ascending</button>
                     <button onClick={() => fetchPosts(0)}>Sort descending</button>
                     <div className="modal-body1">

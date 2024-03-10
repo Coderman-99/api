@@ -49,6 +49,12 @@ function Card(props) {
                     }
                     else {
                         switch (prop) {
+                            case "item":
+                                return (
+                                    <>
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+                                    </>
+                                );
                             case "name":
                                 return (
                                     <>
