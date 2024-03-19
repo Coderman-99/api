@@ -6,7 +6,7 @@ function Error(props) {
     }
     else {
         return (
-            <></>
+            <p></p>
         );
     }
 

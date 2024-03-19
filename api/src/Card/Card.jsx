@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalContent2 from "./ModalContent2";
+import ModalContent2 from "../ModalContent2";
 
 function Card(props) {
     return (
@@ -18,13 +18,32 @@ function Card(props) {
                             );
                         }
                         else {
+                            if (prop == "cca2") {
+                                return (
+                                    <>
+                                        <div className="inline">
+                                            <p className="key" >ISO 3166-1 alpha-2 code: </p>
+                                            <p>{props.contents[prop]}</p>
+                                        </div>
+                                    </>
+                                );
+                            }
+                            else if (prop == "cca3") {
+                                return (
+                                    <>
+                                        <div className="inline">
+                                            <p className="key">ISO 3166-1 alpha-3 code: </p>
+                                            <p>{props.contents[prop]}</p>
+                                        </div>
+                                    </>
+                                );
+                            }
                             return (
                                 <>
                                     <div className="inline">
-                                        <p className="children-key" style={{ color: props.color }} >{prop}: </p>
+                                        <p className="key">{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                         <p>{props.contents[prop]}</p>
                                     </div>
-
                                 </>
                             );
                         }
@@ -34,8 +53,9 @@ function Card(props) {
                 else if (props.contents[prop].constructor == Array) {
                     return (
                         <>
+
                             <div className="inline">
-                                <p className="children-key" style={{ color: props.color }}>{prop}: </p>
+                                <p className="key">{prop}: </p>
                                 <p>{props.contents[prop].join(' ')}</p>
                             </div>
 
@@ -52,35 +72,47 @@ function Card(props) {
                             case "item":
                                 return (
                                     <>
-                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+
                                     </>
                                 );
                             case "name":
                                 return (
                                     <>
-                                        <p className="parent-key">Country name: </p>
-                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+
+                                        <p className="key">Country name: </p>
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+
                                     </>
                                 );
                             case "nativeName":
                                 return (
                                     <>
-                                        <p className="parent-key">Country native name: </p>
-                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+
+                                        <p className="key">Country native name: </p>
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+
+
                                     </>
                                 );
                             case "idd":
                                 return (
                                     <>
-                                        <p className="parent-key">International direct dialing: </p>
-                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+
+                                        <p className="key">International direct dialing: </p>
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+
+
                                     </>
                                 );
                             default:
                                 return (
                                     <>
-                                        <p className="parent-key">{prop}: </p>
-                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} />
+
+                                        <p className="key">{prop}: </p>
+                                        <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+
+
                                     </>
                                 );
 

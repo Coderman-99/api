@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal"
-import OpenModal from "./OpenModal";
-import ModalContent3 from "./ModalContent3";
 function ModalContent2(props) {
     return (
         <>
@@ -9,10 +7,24 @@ function ModalContent2(props) {
                 <div>
                     {props.keys.map((prop) => {
                         if (typeof (props.contents[prop]) == "string") {
+                            if (props.contents[prop].includes("https")) {
+                                return (
+                                    <>
+                                        <div className="inline">
+                                            <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                            <p><a href={props.contents[prop]}>{props.contents[prop]}</a></p>
+                                        </div>
+
+                                    </>
+                                );
+                            }
                             return (
                                 <>
-                                    <p className="second-key">{prop}:</p>
-                                    <p>{props.contents[prop]}</p>
+                                    <div className="inline">
+                                        <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                        <p>{props.contents[prop]}</p>
+                                    </div>
+
                                 </>
 
                             );
@@ -21,18 +33,35 @@ function ModalContent2(props) {
                         else if (props.contents[prop].constructor == Array) {
                             return (
                                 <>
-                                    <p className="second-key">{prop}:</p>
-                                    <p>;{props.contents[prop].join(' ')}</p>
+                                    <div className="inline">
+                                        <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                        <p>{props.contents[prop].join(' ')}</p>
+                                    </div>
+
                                 </>
                             );
                         }
                         else if (props.contents[prop].constructor == Object) {
-                            return (
-                                <>
-                                    <p className="second-key">{prop}:</p>
-                                    <ModalContent2 contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
-                                </>
-                            );
+                            if (prop == "nativeName") {
+                                return (
+                                    <>
+                                        <div className="inline">
+                                            <p className="key">&emsp;Native name: </p>
+                                            <ModalContent2 contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
+                                        </div>
+                                    </>
+                                );
+                            }
+                            else {
+                                return (
+                                    <>
+                                        <div className="inline">
+                                            <p className="key">&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                            <ModalContent2 contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
+                                        </div>
+                                    </>
+                                );
+                            }
                         }
                         else {
                             return (

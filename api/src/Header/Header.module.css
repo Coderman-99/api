@@ -1,0 +1,11 @@
+.header {
+    text-align: left;
+}
+
+h1 {
+    padding: 10px;
+}
+
+h1:hover {
+    cursor: pointer;
+}

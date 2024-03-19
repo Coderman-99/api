@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal"
-import OpenModal from "./OpenModal";
 import ModalContent2 from "./ModalContent2";
 
 function ModalContent(props) {
@@ -30,29 +29,237 @@ function ModalContent(props) {
                         <div>
                             {keys.map((prop) => {
                                 if (typeof (countryinfo[prop]) == "string") {
-                                    return (
-                                        <>
-                                            <p className="first-key">{prop}:</p>
-                                            <p>{countryinfo[prop]}</p>
-                                        </>
-                                    );
+                                    if (prop == "tld") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Country code top-level domain: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "tld") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Country code top-level domain: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "cca2") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">ISO 3166-1 alpha2: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "cca3") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">ISO 3166-1 alpha3: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "ccn3") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">ISO 3166-1 numeric: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "cioc") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">IOC: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "startOfWeek") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Start of week: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                                    <p>{countryinfo[prop]}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+
+                                }
+                                else if (countryinfo[prop].constructor == Boolean) {
+                                    if (prop == "unMember") {
+                                        if (countryinfo[prop] = true) {
+                                            return (
+                                                <>
+                                                    <div className="inline">
+                                                        <p className="key" >UN member: </p>
+                                                        <p>Yes</p>
+                                                    </div>
+
+                                                </>
+                                            );
+                                        }
+                                        else {
+                                            return (
+                                                <>
+                                                    <div className="inline">
+                                                        <p className="key" >UN member: </p>
+                                                        <p>No</p>
+                                                    </div>
+
+                                                </>
+                                            );
+                                        }
+                                    }
+                                    if (countryinfo[prop] = true) {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key" >{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                                    <p>Yes</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+                                    else {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key" >{prop[0].toUpperCase() + prop.substring(1)}: </p>
+                                                    <p>No</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+
                                 }
                                 else if (countryinfo[prop].constructor == Array) {
-                                    return (
-                                        <>
-                                            <p className="first-key" >{prop}:</p>
-                                            <p>{countryinfo[prop].join(' ')}</p>
-                                        </>
-                                    );
-                                }
-                                else {
-                                    return (
+                                    if (prop == "altSpellings") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key" >Alternative Spelling:</p>
+                                                    <p>{countryinfo[prop].join(', ')}</p>
+                                                </div>
 
-                                        <>
-                                            <p className="first-key">{prop}: </p>
-                                            <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
-                                        </>
-                                    );
+                                            </>
+                                        );
+                                    }
+                                    if (prop == "latlng") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key" >Latitude and Longitude: </p>
+                                                    <p>{countryinfo[prop].join(', ')}</p>
+                                                </div>
+
+                                            </>
+                                        );
+                                    }
+
+                                }
+
+                                //if info is within the nested objects pass augument to ModelContent2
+
+                                else {
+                                    if (prop == "name") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Country name: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "currencies") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Currency: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "postalCode") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Postal code: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "coatOfArms") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">Coat of arms: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+                                    else if (prop == "idd") {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">international direct dialing: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+                                    else {
+                                        return (
+                                            <>
+                                                <div className="inline">
+                                                    <p className="key">{prop[0].toUpperCase() + prop.substring()}: </p>
+                                                    <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
+                                                </div>
+                                            </>
+                                        );
+                                    }
+
+
+
                                 }
                             })
                             }
