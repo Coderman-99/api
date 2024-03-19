@@ -12,7 +12,7 @@ function ModalContent2(props) {
                                     <>
                                         <div className="inline">
                                             <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
-                                            <p><a href={props.contents[prop]}>{props.contents[prop]}</a></p>
+                                            <p><a href={props.contents[prop]} target="_blank">{props.contents[prop]}</a></p>
                                         </div>
 
                                     </>

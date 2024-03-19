@@ -9,17 +9,6 @@
 
 }
 
-.footer {
-  background-color: blue;
-  bottom: 0;
-  text-align: left;
-  background:
-    linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
-    linear-gradient(#4e4376, #2b5876);
-  background-size: cover;
-  border-bottom: .2em solid #fff;
-}
-
 
 .countries {
   flex-direction: row;
@@ -57,11 +46,8 @@
 }
 
 a {
-  color: #242424;
   text-decoration: none;
 }
-
-
 
 .key {
   font-weight: bold;

@@ -4,8 +4,11 @@ function Header() {
     return (
         <header className={styles.header}>
             <h1>
-                Country Pedia
+                <a href="index.html">
+                    Country Pedia
+                </a>
             </h1>
+
         </header>
     );
 }

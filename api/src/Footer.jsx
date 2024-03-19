@@ -5,13 +5,13 @@ function Footer() {
         <div className="footer">
             <nav>
                 <ul>
-                    <li><a href="https://github.com/Coderman-99"><SocialIcon url='www.github.com' /></a>&nbsp;&nbsp;Github: coderman-99</li>
-                    <li><a href="https://www.linkedin.com/in/prum-munirak-ba23b7236/"><SocialIcon url='www.linkedin.com' /></a>&nbsp;&nbsp;Prum Munirak</li>
-                    <li><a href=""><SocialIcon url='www.discord.com' /></a>&nbsp;&nbsp;Discord</li>
-                    <li><a href=""><SocialIcon url='www.telegram.com' /></a>&nbsp;&nbsp;Telegram: +85578449298</li>
+                    <li><SocialIcon url='www.github.com' href="https://github.com/Coderman-99" target='_blank' />&nbsp;&nbsp;Github: coderman-99</li>
+                    <li><SocialIcon url='www.linkedin.com' href="https://www.linkedin.com/in/prum-munirak-ba23b7236/" target="_blank" />&nbsp;&nbsp;Prum Munirak</li>
+                    <li><SocialIcon url='www.discord.com' target="_blank" />&nbsp;&nbsp;Discord</li>
+                    <li><SocialIcon url='www.telegram.com' target="_blank" />&nbsp;&nbsp;Telegram: +85578449298</li>
                 </ul>
             </nav>
-        </div>
+        </div >
     );
 }
 export default Footer
