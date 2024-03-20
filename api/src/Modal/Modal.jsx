@@ -55,7 +55,6 @@ function ModalShow() {
             setErrorMessage("Cannot be empty!")
         }
     };
-    console.log(sCountry)
 
     // 25 cards per page
 
@@ -76,9 +75,10 @@ function ModalShow() {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                     <div>
                         <form onSubmit={(e) => handleSubmit(e, posts)}>
-                            <input type="text" name="country" value={searchCountry} onChange={(e) => setSearchCountry(e.target.value
+                            <label htmlFor="country">Search</label>
+                            <input autoComplete="on" id="country" type="text" name="country" value={searchCountry} onChange={(e) => setSearchCountry(e.target.value
                             )} />
-                            <input type="submit" />
+                            <input type="submit" value="Search" />
                         </form>
                         <Error error={errorMessage} />
                         <button className={styles.button} onClick={() => fetchPosts(1)}>Sort ascending</button>
@@ -88,12 +88,12 @@ function ModalShow() {
                     {/*show card country few info */}
 
                     <div className="modal-body1">
-                        <div className={styles.modalBody2}>{currentPosts.map((post) => {
+                        <div className={styles.modalBody2}>{currentPosts.map((post, id) => {
                             if (Object.keys(post).includes("item")) {
                                 return (
                                     <>
-                                        <div className={styles.card} onClick={() => openModal(post.item.name.common)}>
-                                            <Card contents={post} keys={Object.keys(post)} color={"green"} />
+                                        <div key={id} className={styles.card} onClick={() => openModal(post.item.name.common)}>
+                                            <Card contents={post} keys={Object.keys(post)} />
                                         </div>
                                     </>
                                 );
@@ -101,8 +101,8 @@ function ModalShow() {
                             else {
                                 return (
                                     <>
-                                        <div className={styles.card} onClick={() => openModal(post.name.common)}>
-                                            <Card contents={post} keys={Object.keys(post)} color={"green"} />
+                                        <div key={id} className={styles.card} onClick={() => openModal(post.name.common)}>
+                                            <Card contents={post} keys={Object.keys(post)} />
                                         </div>
                                     </>
                                 );

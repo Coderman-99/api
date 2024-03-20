@@ -5,12 +5,12 @@ function ModalContent2(props) {
         <>
             <div className="modal-content">
                 <div>
-                    {props.keys.map((prop) => {
+                    {props.keys.map((prop, id) => {
                         if (typeof (props.contents[prop]) == "string") {
                             if (props.contents[prop].includes("https")) {
                                 return (
                                     <>
-                                        <div className="inline">
+                                        <div key={id} className="inline">
                                             <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                             <p><a href={props.contents[prop]} target="_blank">{props.contents[prop]}</a></p>
                                         </div>
@@ -20,7 +20,7 @@ function ModalContent2(props) {
                             }
                             return (
                                 <>
-                                    <div className="inline">
+                                    <div key={id} className="inline">
                                         <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                         <p>{props.contents[prop]}</p>
                                     </div>
@@ -33,7 +33,7 @@ function ModalContent2(props) {
                         else if (props.contents[prop].constructor == Array) {
                             return (
                                 <>
-                                    <div className="inline">
+                                    <div key={id} className="inline">
                                         <p className="key">&emsp;&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                         <p>{props.contents[prop].join(' ')}</p>
                                     </div>
@@ -45,7 +45,7 @@ function ModalContent2(props) {
                             if (prop == "nativeName") {
                                 return (
                                     <>
-                                        <div className="inline">
+                                        <div key={id} className="inline">
                                             <p className="key">&emsp;Native name: </p>
                                             <ModalContent2 contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
                                         </div>
@@ -55,7 +55,7 @@ function ModalContent2(props) {
                             else {
                                 return (
                                     <>
-                                        <div className="inline">
+                                        <div key={id} className="inline">
                                             <p className="key">&emsp;{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                             <ModalContent2 contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} />
                                         </div>
