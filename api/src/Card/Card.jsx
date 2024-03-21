@@ -5,7 +5,7 @@ import styles from "./Card.module.css"
 function Card(props) {
     return (
         <>
-            {props.keys.map((prop, id) => {
+            {props.keys.map((prop) => {
                 if (typeof (props.contents[prop]) == "string") {
                     if (prop == "png") {
                         return (
@@ -22,7 +22,7 @@ function Card(props) {
                             if (prop == "cca2") {
                                 return (
                                     <>
-                                        <div key={id} className="inline">
+                                        <div key={prop} className="inline">
                                             <p className="key" >ISO 3166-1 alpha-2 code: </p>
                                             <p>{props.contents[prop]}</p>
                                         </div>
@@ -32,7 +32,7 @@ function Card(props) {
                             else if (prop == "cca3") {
                                 return (
                                     <>
-                                        <div key={id} className="inline">
+                                        <div key={prop} className="inline">
                                             <p className="key">ISO 3166-1 alpha-3 code: </p>
                                             <p>{props.contents[prop]}</p>
                                         </div>
@@ -41,7 +41,7 @@ function Card(props) {
                             }
                             return (
                                 <>
-                                    <div key={id} className="inline">
+                                    <div key={prop} className="inline">
                                         <p className="key">{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                         <p>{props.contents[prop]}</p>
                                     </div>
@@ -54,7 +54,7 @@ function Card(props) {
                 else if (props.contents[prop].constructor == Array) {
                     return (
                         <>
-                            <div key={id} className="inline">
+                            <div key={prop} className="inline">
                                 <p className="key">{prop}: </p>
                                 <p>{props.contents[prop].join(' ')}</p>
                             </div>
@@ -65,8 +65,9 @@ function Card(props) {
                 else if (props.contents[prop].constructor == Object) {
                     if (prop == "flags") {
                         return (
-
-                            <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} key={props.key} />
+                            <div key={prop}>
+                                <Card contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} key={props.key} />
+                            </div>
                         );
                     }
                     else {
@@ -74,7 +75,7 @@ function Card(props) {
                             case "item":
                                 return (
                                     <>
-                                        <div key={id} >
+                                        <div key={prop} >
                                             <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
                                         </div>
                                     </>
@@ -82,43 +83,46 @@ function Card(props) {
                             case "name":
                                 return (
                                     <>
-
-                                        <p key={id} className="key">Country name: </p>
-                                        <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        <div key={prop} >
+                                            <p className="key">Country name: </p>
+                                            <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        </div>
 
                                     </>
                                 );
                             case "nativeName":
                                 return (
                                     <>
-
-                                        <p key={id} className="key">Country native name: </p>
-                                        <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        <div key={prop} >
+                                            <p className="key">Country native name: </p>
+                                            <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        </div>
 
 
                                     </>
                                 );
-                            case "idd":
+                            case "propd":
                                 return (
                                     <>
-
-                                        <p key={id} className="key">International direct dialing: </p>
-                                        <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
-
+                                        <div key={prop} >
+                                            <p key={prop} className="key">International direct dialing: </p>
+                                            <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        </div>
 
                                     </>
                                 );
                             default:
                                 return (
                                     <>
+                                        <div key={prop} >
+                                            <p key={prop} className="key">{prop}: </p>
+                                            <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
 
-                                        <p key={id} className="key">{prop}: </p>
-                                        <Card key={props.key} contents={props.contents[prop]} keys={Object.keys(props.contents[prop])} color={"blue"} border={"none"} />
+                                        </div>
 
 
                                     </>
                                 );
-
                         }
 
                     }

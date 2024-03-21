@@ -3,14 +3,24 @@ import { SocialIcon } from 'react-social-icons'
 function Footer() {
     return (
         <div className="footer">
-            <nav>
-                <ul>
-                    <li><SocialIcon url='www.github.com' href="https://github.com/Coderman-99" target='_blank' />&nbsp;&nbsp;Github: coderman-99</li>
-                    <li><SocialIcon url='www.linkedin.com' href="https://www.linkedin.com/in/prum-munirak-ba23b7236/" target="_blank" />&nbsp;&nbsp;Prum Munirak</li>
-                    <li><SocialIcon url='www.discord.com' target="_blank" />&nbsp;&nbsp;Discord</li>
-                    <li><SocialIcon url='www.telegram.com' target="_blank" />&nbsp;&nbsp;Telegram: +85578449298</li>
-                </ul>
-            </nav>
+            <div>
+                <SocialIcon url='www.github.com' href="https://github.com/Coderman-99" target='_blank' /><p>&nbsp;&nbsp;Github: coderman-99</p>
+            </div>
+            <div>
+
+                <SocialIcon url='www.linkedin.com' href="https://www.divnkedin.com/in/prum-munirak-ba23b7236/" target="_blank" /><p>&nbsp;&nbsp;Prum Munirak
+                </p>
+            </div>
+            <div>
+
+                <SocialIcon url='www.discord.com' target="_blank" /><p>&nbsp;&nbsp;Discord</p>
+
+            </div>
+            <div>
+
+                <SocialIcon url='www.telegram.com' target="_blank" /><p>&nbsp;&nbsp;Telegram: +85578449298</p>
+
+            </div>
         </div >
     );
 }

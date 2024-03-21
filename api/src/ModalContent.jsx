@@ -27,12 +27,12 @@ function ModalContent(props) {
                     let keys = Object.keys(countryinfo)
                     return (
                         <div>
-                            {keys.map((prop, id) => {
+                            {keys.map((prop) => {
                                 if (typeof (countryinfo[prop]) == "string") {
                                     if (prop == "tld") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Country code top-level domain: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -43,7 +43,7 @@ function ModalContent(props) {
                                     else if (prop == "tld") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Country code top-level domain: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -54,7 +54,7 @@ function ModalContent(props) {
                                     else if (prop == "cca2") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">ISO 3166-1 alpha2: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -65,7 +65,7 @@ function ModalContent(props) {
                                     else if (prop == "cca3") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">ISO 3166-1 alpha3: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -76,7 +76,7 @@ function ModalContent(props) {
                                     else if (prop == "ccn3") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">ISO 3166-1 numeric: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -87,7 +87,7 @@ function ModalContent(props) {
                                     else if (prop == "cioc") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">IOC: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -98,7 +98,7 @@ function ModalContent(props) {
                                     else if (prop == "startOfWeek") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Start of week: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -109,7 +109,7 @@ function ModalContent(props) {
                                     else {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                                     <p>{countryinfo[prop]}</p>
                                                 </div>
@@ -124,7 +124,7 @@ function ModalContent(props) {
                                         if (countryinfo[prop] = true) {
                                             return (
                                                 <>
-                                                    <div key={id} className="inline">
+                                                    <div key={prop} className="inline">
                                                         <p className="key" >UN member: </p>
                                                         <p>Yes</p>
                                                     </div>
@@ -135,7 +135,7 @@ function ModalContent(props) {
                                         else {
                                             return (
                                                 <>
-                                                    <div key={id} className="inline">
+                                                    <div key={prop} className="inline">
                                                         <p className="key" >UN member: </p>
                                                         <p>No</p>
                                                     </div>
@@ -147,7 +147,7 @@ function ModalContent(props) {
                                     if (countryinfo[prop] = true) {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key" >{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                                     <p>Yes</p>
                                                 </div>
@@ -158,7 +158,7 @@ function ModalContent(props) {
                                     else {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key" >{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                                     <p>No</p>
                                                 </div>
@@ -172,7 +172,7 @@ function ModalContent(props) {
                                     if (prop == "altSpellings") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key" >Alternative Spelling:</p>
                                                     <p>{countryinfo[prop].join(', ')}</p>
                                                 </div>
@@ -183,7 +183,7 @@ function ModalContent(props) {
                                     if (prop == "latlng") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key" >Latitude and Longitude: </p>
                                                     <p>{countryinfo[prop].join(', ')}</p>
                                                 </div>
@@ -200,7 +200,7 @@ function ModalContent(props) {
                                     if (prop == "name") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Country name: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
@@ -210,7 +210,7 @@ function ModalContent(props) {
                                     else if (prop == "currencies") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Currency: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
@@ -220,7 +220,7 @@ function ModalContent(props) {
                                     else if (prop == "postalCode") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Postal code: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
@@ -230,17 +230,17 @@ function ModalContent(props) {
                                     else if (prop == "coatOfArms") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">Coat of arms: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
                                             </>
                                         );
                                     }
-                                    else if (prop == "idd") {
+                                    else if (prop == "propd") {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
+                                                <div key={prop} className="inline">
                                                     <p className="key">international direct dialing: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
@@ -250,8 +250,8 @@ function ModalContent(props) {
                                     else {
                                         return (
                                             <>
-                                                <div key={id} className="inline">
-                                                    <p className="key">{prop[0].toUpperCase() + prop.substring()}: </p>
+                                                <div key={prop} className="inline">
+                                                    <p className="key">{prop[0].toUpperCase() + prop.substring(1)}: </p>
                                                     <ModalContent2 contents={countryinfo[prop]} keys={Object.keys(countryinfo[prop])} />
                                                 </div>
                                             </>

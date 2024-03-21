@@ -88,11 +88,11 @@ function ModalShow() {
                     {/*show card country few info */}
 
                     <div className="modal-body1">
-                        <div className={styles.modalBody2}>{currentPosts.map((post, id) => {
+                        <div className={styles.modalBody2}>{currentPosts.map((post) => {
                             if (Object.keys(post).includes("item")) {
                                 return (
                                     <>
-                                        <div key={id} className={styles.card} onClick={() => openModal(post.item.name.common)}>
+                                        <div key={post.item.ccn3} className={styles.card} onClick={() => openModal(post.item.name.common)}>
                                             <Card contents={post} keys={Object.keys(post)} />
                                         </div>
                                     </>
@@ -101,7 +101,7 @@ function ModalShow() {
                             else {
                                 return (
                                     <>
-                                        <div key={id} className={styles.card} onClick={() => openModal(post.name.common)}>
+                                        <div key={post.ccn3} className={styles.card} onClick={() => openModal(post.name.common)}>
                                             <Card contents={post} keys={Object.keys(post)} />
                                         </div>
                                     </>
@@ -117,7 +117,7 @@ function ModalShow() {
                         <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Modal">
 
                             <div className={styles.modal}>
-                                <button onClick={closeModal} style={{ position: "fixed", left: "90%" }}>close</button>
+                                <button onClick={closeModal} style={{ position: "fixed", left: "80%" }}>close</button>
                                 <ModalContent country={country} />
                             </div>
 

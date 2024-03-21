@@ -16,24 +16,9 @@
 }
 
 
-.pagination li {
-  display: inline;
-  padding: 10px 16px 10px 16px;
-  margin: 25px;
-  border: 3px;
-  border-color: #242424;
-  border-radius: 5px;
-  background-color: #4e4376;
-}
-
 .pagination li:hover {
   cursor: pointer;
   background-color: blue;
-}
-
-.footer li {
-  display: inline;
-  padding: 50px;
 }
 
 
@@ -51,4 +36,18 @@ a {
 
 .key {
   font-weight: bold;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer div {
+  display: flex;
+  align-items: center;
+  margin: 0% 5% 0% 5%;
 }

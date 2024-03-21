@@ -8,17 +8,18 @@ const Paginate = ({ postsPerPage, totalPosts, paginate }) => {
     }
 
     return (
-        <ul className="pagination">
+        <>
             {pageNumbers.map((number) => (
-                <li
+                <div
                     key={number}
                     onClick={() => paginate(number)}
                     className="page-number"
                 >
                     {number}
-                </li>
+                </div>
+
             ))}
-        </ul>
+        </>
     );
 };
 

@@ -38,7 +38,23 @@
 }
 
 .paginationContainer {
-    display: inline;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginationContainer div {
+    max-width: fit-content;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px 10px 16px;
+    margin: 2%;
+    border: 3px;
+    border-color: #242424;
+    border-radius: 5px;
+    background-color: #4e4376;
 }
 
 .modalBody2 {
